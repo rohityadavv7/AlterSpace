@@ -1,6 +1,6 @@
 import express from "express"
 const app = express();
-import {DB_URL} from "./config"
+import {DB_URL, PORT} from "./config"
 
 import userRoutes from "./routes/userRoutes"
 import contentRoutes from "./routes/contentRoutes"
@@ -21,4 +21,4 @@ app.get("/", (req,res) => {
 
 mongoose.connect(DB_URL!)
 
-app.listen(3000)
+app.listen(PORT || 4000);
