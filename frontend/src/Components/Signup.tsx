@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form';
 import {motion, useTime, useTransform} from "motion/react"
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
+import Loader from './loader';
 
 
 function Signup() {
@@ -20,6 +22,37 @@ function Signup() {
   const bgRotate = useTransform(rotate,(r) => {
     return `conic-gradient(from ${r}deg,#000,#381767)`
   })
+
+  const navigate = useNavigate()
+
+  const[loading, setLoading] = useState(false)
+
+  interface dataType{
+    username:String,
+    password:String
+  }
+
+  async function Signup(data: dataType):Promise<void>{
+    try{
+        setLoading(true);
+        const username = data.username;
+        const password = data.password;
+
+        const response = await axios.post("http://localhost:3000/api/v1/user/signup",{
+            username,password
+        })
+
+        console.log("RESPONSE-> ", response.data)
+        setLoading(false);
+        navigate("/");
+
+    }
+    catch(error){
+        setLoading(false)
+        console.log("ERROR IN SIGNUP API-> ", error);
+        navigate("/signup")
+    }
+  }
 
   return (
     <div className="flex relative w-full h-full overflow-hidden font-['Neue_Haas_Grotesk_Text_Pro'] bg-newBlack">
@@ -69,7 +102,7 @@ function Signup() {
               <div className='mt-2 text-sm md:text-md text-zinc-400'>please enter your details to sign up with us.</div>
 
               <div className='flex mt-6 flex-col w-[85%]'>
-                <form onSubmit={handleSubmit((data)=> console.log(data))} 
+                <form onSubmit={handleSubmit(Signup)} 
                 className='flex flex-col space-y-5 z-100 text-xl'>
                   <label>
                     <div className='font-["Neue_Haas_Grotesk_Text_Pro"]/40 tracking-wider text-white/80 '>Username :</div>
@@ -92,7 +125,7 @@ function Signup() {
                         </svg>)
                         :
                         (<svg onClick={() => setShowPass((prev)=> !prev)}
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className=" text-zinc-500 cursor-pointer size-6 relative -top-8.5 -right-50">
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className=" text-zinc-500 cursor-pointer size-6 relative -top-8.5 -right-50 md:-right-75">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
                         </svg>)
                     }
@@ -112,7 +145,7 @@ function Signup() {
                         </svg>)
                         :
                         (<svg onClick={() => setShowConfirmPass((prev)=> !prev)}
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className=" text-zinc-500 cursor-pointer size-6 relative -top-8.5 -right-50">
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className=" text-zinc-500 cursor-pointer size-6 relative -top-8.5 -right-50 md:-right-75">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
                         </svg>)
                     }
@@ -133,7 +166,14 @@ function Signup() {
                     whileTap={{scale:0.9}}
                     className=' w-full 
                     cursor-pointer text-zinc-200 px-8 py-2 text-xl bg-zinc-900  relative  rounded-2xl'
-                    type='submit'>Sign up</motion.button>
+                    type='submit'>
+                        {
+                            loading?
+                            (<div className='ml-30'><Loader/></div>)
+                            :
+                            ("Sign up")
+                        }
+                    </motion.button>
                   </motion.div>
                   
                 </form>

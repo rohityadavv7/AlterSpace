@@ -14,3 +14,56 @@
 
 
 }
+
+@keyframes animate-blob {
+  0%{
+    transform: translate(0%,0%);
+  }
+  45%{
+    transform: translate(150%, 30%) scale(1.2);
+  }
+
+  70%{
+    transform: translate(30%, -50%) scale(1);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+
+@keyframes animate-blob2 {
+  0%{
+    transform: translate(0%,0%);
+  }
+  45%{
+    transform: translate(-200%, 30%) scale(1.8);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+
+@keyframes animate-blob3 {
+  0%{
+    transform: translate(0%,0%);
+  }
+  45%{
+    transform: translate(50%, 30%) scale(3);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+
+
+@layer utilities{
+  .animate-blob{
+    animation: animate-blob 12s linear infinite;
+  }
+  .animate-blob2{
+    animation: animate-blob2 12s ease-in-out infinite;
+  }
+  .animate-blob3{
+    animation: animate-blob3 12s ease-in-out infinite;
+  }
+}

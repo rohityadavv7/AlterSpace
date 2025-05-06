@@ -1,14 +1,20 @@
 import { useForm } from 'react-hook-form';
 import {motion, useTime, useTransform} from "motion/react"
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
+import Loader from './loader';
+import axios from "axios"
+import toast from 'react-hot-toast';
 
 function Login() {
 
   const {register,handleSubmit} = useForm()
 
   const[showPass, setShowPass] = useState(false)
+
+  const[loading, setLoading] = useState(false);
+
+  const navigate = useNavigate()
 
   const time = useTime()
 
@@ -19,6 +25,44 @@ function Login() {
   const bgRotate = useTransform(rotate,(r) => {
     return `conic-gradient(from ${r}deg,#000,#381767)`
   })
+
+  interface dataType{
+    username:String,
+    password:String
+  }
+
+  async function Login(data:dataType):Promise<void>{
+
+    setLoading(true)
+
+    try{
+      const username = data.username;
+      const password = data.password;
+      const response = await axios.post("http://localhost:3000/api/v1/user/login", {
+        username,password
+      })
+
+      console.log(response.data);
+
+      localStorage.setItem("token", response.data.token);
+
+      if(response.data.success){
+        toast.success("Logged in!")
+      }
+
+      setLoading(false)
+
+      navigate("/dashboard")
+    }catch(error){
+      setLoading(false)
+      console.log("ERROR IN LOGIN API-> ", error)
+      toast.error("failed to login!")
+      navigate("/")
+    }
+
+    console.log("data-> ", data)
+
+  }
 
   return (
     <div className="flex relative w-full h-full overflow-hidden font-['Neue_Haas_Grotesk_Text_Pro'] bg-newBlack">
@@ -70,7 +114,7 @@ function Login() {
               <div className='mt-2 text-sm md:text-md text-zinc-400'>Sign in to continue organizing your thoughts</div>
 
               <div className='flex mt-6 flex-col w-[85%]'>
-                <form onSubmit={handleSubmit((data)=> console.log(data))} 
+                <form onSubmit={handleSubmit(Login)} 
                 className='flex flex-col space-y-8 z-100 text-xl'>
                   <label>
                     <div className='font-["Neue_Haas_Grotesk_Text_Pro"]/40 tracking-wider text-white/80 '>Username :</div>
@@ -116,7 +160,14 @@ function Login() {
                     whileTap={{scale:0.9}}
                     className=' w-full 
                     cursor-pointer text-zinc-200 px-8 py-2 text-xl bg-zinc-900  relative  rounded-2xl'
-                    type='submit'>Log in</motion.button>
+                    type='submit'>
+                      {
+                        loading?
+                        (<div className='mx-auto w-full ml-30'><Loader/></div>)
+                        :
+                        ("Log in")
+                      }
+                    </motion.button>
                   </motion.div>
                   
                 </form>
