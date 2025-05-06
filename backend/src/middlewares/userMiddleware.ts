@@ -19,7 +19,7 @@ export const userMiddleware = async(req:Request, res:Response, next:NextFunction
             return;
         }
 
-        console.log("secret-> ", SECRET_KEY)
+     
 
         const verifyToken = jwt.verify(token,SECRET_KEY!)
 

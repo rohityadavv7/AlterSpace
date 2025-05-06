@@ -1,5 +1,6 @@
 import express from "express"
 const app = express();
+import {DB_URL} from "./config"
 
 import userRoutes from "./routes/userRoutes"
 import contentRoutes from "./routes/contentRoutes"
@@ -18,8 +19,6 @@ app.get("/", (req,res) => {
     res.send("hi there")
 })
 
-// MONGO_URL = "mongodb+srv://sungjinwoosrank100:Srank100@cluster0.xjzp30d.mongodb.net/PayDashDB"
-
-mongoose.connect("mongodb+srv://sungjinwoosrank100:Srank100@cluster0.xjzp30d.mongodb.net/AlterSpaceDB")
+mongoose.connect(DB_URL!)
 
 app.listen(3000)
