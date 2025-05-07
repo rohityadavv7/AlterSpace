@@ -105,9 +105,9 @@ function SideBar() {
                
                  
                 className='mb-8 mt-6 items-center flex flex-col'>
-                  <SideBarTabs icon={<X/>} text={"Twitter"}/>
-                  <SideBarTabs icon={<Youtube/>} text={"Youtube"}/>
-                  <SideBarTabs icon={<Google/>} text={"Google"}/>
+                  <SideBarTabs icon={<X w={20} h={20}/>} text={"Twitter"}/>
+                  <SideBarTabs icon={<Youtube w={23} h={23}/>} text={"Youtube"}/>
+                  <SideBarTabs icon={<Google w={27} h={27}/>} text={"Google"}/>
                 </motion.div>
               </motion.div>
             )

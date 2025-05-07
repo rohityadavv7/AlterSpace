@@ -4,6 +4,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import Loader from './loader';
+import { useRecoilState } from 'recoil';
+import { loadingAtom } from '../Recoil/Atoms/LoadingAtom';
 
 
 function Signup() {
@@ -25,7 +27,7 @@ function Signup() {
 
   const navigate = useNavigate()
 
-  const[loading, setLoading] = useState(false)
+  const[loading, setLoading] = useRecoilState(loadingAtom)
 
   interface dataType{
     username:String,

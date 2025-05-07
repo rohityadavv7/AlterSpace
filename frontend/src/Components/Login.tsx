@@ -5,6 +5,9 @@ import { useState } from 'react';
 import Loader from './loader';
 import axios from "axios"
 import toast from 'react-hot-toast';
+import { useRecoilState } from 'recoil';
+import { loadingAtom } from '../Recoil/Atoms/LoadingAtom';
+
 
 function Login() {
 
@@ -12,7 +15,7 @@ function Login() {
 
   const[showPass, setShowPass] = useState(false)
 
-  const[loading, setLoading] = useState(false);
+  const [loading, setLoading] = useRecoilState(loadingAtom)
 
   const navigate = useNavigate()
 
@@ -42,7 +45,7 @@ function Login() {
         username,password
       })
 
-      console.log(response.data);
+      console.log("RESPONSE IN LOGIN-> ",response.data);
 
       localStorage.setItem("token", response.data.token);
 
@@ -59,8 +62,6 @@ function Login() {
       toast.error("failed to login!")
       navigate("/")
     }
-
-    console.log("data-> ", data)
 
   }
 

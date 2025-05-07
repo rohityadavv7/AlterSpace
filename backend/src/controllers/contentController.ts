@@ -5,23 +5,24 @@ import { Content } from "../models/contentModel";
 
 export const createContent = async(req:Request, res:Response):Promise<void> => {
     try{
-        const{link, linkType, title, tag, userId, editable} = req.body;
+        const{link, linkType, title, tag, editable} = req.body;
+
+        console.log(link,linkType,title)
 
         const userTokenId = req.userId;
         // console.log("tokenid-> ", userTokenId)
         // console.log("userId-> ", userId)
 
-        let authorName;
 
         const userDetails = await User.findById({_id:userTokenId});
         // console.log("user details -> ", userDetails)
 
-        if(userId === userTokenId){
-            authorName = "You"
-        }
-        else{
-            authorName = userDetails?.username;
-        }
+        // if(userId === userTokenId){
+        //     authorName = "You"
+        // }
+        // else{
+        //     authorName = userDetails?.username;
+        // }
 
         // console.log("author-> ",authorName )
 
@@ -29,9 +30,9 @@ export const createContent = async(req:Request, res:Response):Promise<void> => {
             link:link,
             Linktype:linkType,
             title:title,
-            addedBy:authorName,
+            addedBy:userDetails?.username,
+            userId:userDetails?._id,
             tag:tag,
-            userId:userId,
             editable
         })
 
@@ -143,7 +144,7 @@ export const getAllContent = async(req:Request, res:Response):Promise<void> => {
         // console.log("allcontent-> ", allContent)
 
         res.status(200).json({
-            success:false,
+            success:true,
             message:"Content fetched!",
             allContent
         })
