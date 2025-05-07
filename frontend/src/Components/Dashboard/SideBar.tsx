@@ -54,7 +54,7 @@ function SideBar() {
     variants={sideBarVariants}
     animate={open? "openSidebar":"closeSidebar"}
     
-    className='p-6 w-80  text-white  overflow-hidden h-screen bg-zinc-950 font-["Neue_Montreal"]'>
+    className='p-6 w-80  text-white  overflow-hidden  bg-zinc-950 font-["Neue_Montreal"]'>
 
         <div className='text-3xl flex justify-around items-center
          from-zinc-200 to-zinc-600
