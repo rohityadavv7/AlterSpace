@@ -56,7 +56,7 @@ function SideBar() {
     
     className='p-6 w-80  text-white  overflow-hidden  bg-zinc-950 font-["Neue_Montreal"]'>
 
-        <div className='text-3xl flex justify-around items-center
+        <div className='md:text-3xl flex justify-around items-center
          from-zinc-200 to-zinc-600
         bg-clip-text text-transparent bg-gradient-to-b
         font-["Neue_Haas_Grotesk_Text_Pro"] '>
@@ -130,8 +130,6 @@ function SideBar() {
            
 
         </motion.div >
-
-
 
     </motion.div>
   )

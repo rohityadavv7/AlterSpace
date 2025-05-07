@@ -5,8 +5,9 @@ import { useState } from 'react';
 import Loader from './loader';
 import axios from "axios"
 import toast from 'react-hot-toast';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { loadingAtom } from '../Recoil/Atoms/LoadingAtom';
+import { tokenAtom } from '../Recoil/Atoms/TokenAtom';
 
 
 function Login() {
@@ -16,6 +17,8 @@ function Login() {
   const[showPass, setShowPass] = useState(false)
 
   const [loading, setLoading] = useRecoilState(loadingAtom)
+
+  const setToken = useSetRecoilState(tokenAtom)
 
   const navigate = useNavigate()
 
@@ -48,6 +51,8 @@ function Login() {
       console.log("RESPONSE IN LOGIN-> ",response.data);
 
       localStorage.setItem("token", response.data.token);
+      setToken(response.data.token);
+
 
       if(response.data.success){
         toast.success("Logged in!")
@@ -93,7 +98,7 @@ function Login() {
 
         {/* RIGHT-SECTION */}
         <div className="w-full md:w-[40%] flex items-center bg-newBlack font-['Neue_Montreal'] z-100">
-          <div className="w-[76%] h-[50%] md:[50%] lg:h-[78%] p-4 mx-auto outline-1 overflow-hidden outline-amber-50/20 relative rounded-2xl">
+          <div className="w-[76%] h-[68%] md:[50%] lg:h-[78%] p-4 mx-auto outline-1 overflow-hidden outline-amber-50/20 relative rounded-2xl">
             <div className="absolute h-100 w-100 left-1/2 -top-40 blur-3xl -translate-x-[50%] rounded-full bg-white/10"></div>
             <div className="text-white  flex flex-col items-center">
 

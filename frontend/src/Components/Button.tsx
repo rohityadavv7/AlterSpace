@@ -3,7 +3,8 @@ import React, { type ReactElement } from 'react'
 interface btnProps{
     variant:"primary" | "secondary",
     title:String,
-    startIcon:ReactElement,
+    startIcon?:ReactElement,
+    endIcon?:ReactElement,
     onClick?:()=> void
 }
 
@@ -22,6 +23,8 @@ function Button(props:btnProps) {
             <div>
                 {props.title}
             </div>
+
+            <div>{props.endIcon}</div>
         </div>
     </button>
   )

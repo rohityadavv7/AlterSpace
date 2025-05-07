@@ -82,7 +82,7 @@ function Signup() {
 
         {/* RIGHT-SECTION */}
         <div className="w-full md:w-[40%] flex items-center bg-newBlack font-['Neue_Montreal'] z-100">
-          <div className="w-[76%] h-[60%] md:h-[88%] p-4 mx-auto outline-1 overflow-hidden outline-amber-50/20 relative rounded-2xl">
+          <div className="w-[76%] h-[80%] md:h-[88%] p-4 mx-auto outline-1 overflow-hidden outline-amber-50/20 relative rounded-2xl">
             <div className="absolute h-100 w-100 left-1/2 -top-40 blur-3xl -translate-x-[50%] rounded-full bg-white/10"></div>
             <div className="text-white  flex flex-col items-center">
 
