@@ -1,30 +1,24 @@
 import React,{useState} from 'react'
-import { TwitterTweetEmbed } from 'react-twitter-embed'
+import ContentType from './ContentType';
 
 interface cardData {
-    title:String,
-    linkType:String,
-    addedBy:String,
-    link:String
+    title:string,
+    linkType:string,
+    addedBy:string,
+    link:string
 }
 
 
 
 function ContentCard(props:cardData) {
-    const [tweetLoaded, setTweetLoaded] = useState(false);
+    
 
     const[fullContent, setFullContent] = useState(false);
 
-    console.log(fullContent)
+    // console.log(fullContent)
 
 
-    function getTweetId(url: string) {
-        const match = url.match(/status\/(\d+)/);
-       
-        return match ? match[1] : null;
-    }
-
-    const tweetId = getTweetId(props.link);
+    
   return (
     <div className={`${fullContent? "min-h-70":"overflow-hidden h-70"} min-w-70 relative 
      text-white/70 items-center flex flex-col  w-40 border-[0.1px] rounded-xl
@@ -44,25 +38,12 @@ function ContentCard(props:cardData) {
             </div>
             )}
 
-            <div>{props.title}</div>
+            <div className='text-xl font-["Grenette"] text-blue-600'>{props.title}</div>
+            
             <div>
-                {!tweetLoaded && (
-                <div className="w-[17rem] h-[10rem] flex items-center justify-center
-                bg-zinc-800 animate-pulse  rounded-md font-['Neue_Montreal']" >
-                    Preparing your tweets...
-                </div>
-                )}
-
-                {tweetId && (
-                <div style={{ display: tweetLoaded ? 'visible' : 'hidden' }}>
-                    <TwitterTweetEmbed
-                    tweetId={tweetId}
-                    onLoad={() => setTweetLoaded(true)}
-                    />
-                </div>
-                )}
-
+                <ContentType link={props.link} linkType={props.linkType} title={props.title}/>
             </div>
+
             <div>{props.linkType}</div>
             
         

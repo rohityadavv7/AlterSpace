@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SideBar from './SideBar'
 import TopGradient from './TopGradient'
 import Button from '../Button'
-import ShareIcon from '../Icons/shareIcon'
+import ShareIcon from "../Icons/ShareIcon"
 import AddIcon from '../Icons/AddIcon'
 import Skeleton from '../Skeleton'
 import axios from 'axios'
@@ -15,6 +15,8 @@ import Modal from '../../Modal/Modal'
 import { tokenAtom } from '../../Recoil/Atoms/TokenAtom'
 import ProfileIcon from '../Icons/ProfileIcon'
 import { useNavigate } from 'react-router-dom'
+import { shareAtom } from '../../Recoil/Atoms/ShareAtom'
+import { linkAtom } from '../../Recoil/Atoms/LinkAtom'
 
 
 
@@ -28,9 +30,17 @@ function Dashboard() {
 
   const[modal,setModal] = useRecoilState(modalAtom)
 
-  const setToken = useSetRecoilState(tokenAtom)
+  const [share, setShare] = useRecoilState(shareAtom)
 
-  console.log(modal)
+  const setToken = useSetRecoilState(tokenAtom)
+  const [link,setLink] = useRecoilState(linkAtom)
+
+  interface contentData{
+    title:string,
+    addedBy:string,
+    link:string,
+    Linktype:string
+  }
 
   async function getContent():Promise<void>{
 
@@ -46,7 +56,7 @@ function Dashboard() {
         }
       })
 
-      console.log("RESPONSE IN GETALLCONTENT-> ", response.data.allContent)
+      console.log("RESPONSE IN GETALLCONTENT-> ", response.data)
 
       setContent(response.data.allContent)
 
@@ -59,6 +69,7 @@ function Dashboard() {
 
   }
 
+  
 
   function handleLogout(){
     setLoading(true)
@@ -74,7 +85,7 @@ function Dashboard() {
   }
 
   const token = localStorage.getItem("token")
-  console.log("token-> ",token)
+  
 
   useEffect(() => {
     getContent()
@@ -90,7 +101,7 @@ function Dashboard() {
           <div>
           {
             modal?
-            (<Modal/>)
+            (<Modal share={share?share:false}/>)
             :
             (null)
           }
@@ -108,7 +119,10 @@ function Dashboard() {
               {/* RECENT-LOGS */}
                 <div className='w-full flex flex-col md:flex-row md:justify-between items-center mt-2 border-b-[0.1px] p-5 border-zinc-600/30'>
                   <div className='flex flex-col md:flex-row gap-4'>
-                    <Button title={"Share"} variant={"primary"} startIcon={<ShareIcon/>} />
+                    <Button title={"Share"} variant={"primary"} startIcon={<ShareIcon/>} onClick={()=> {
+                      setShare(true),
+                      setModal(true);
+                    }}/>
     
                     <Button title={"Add Content"} variant={"secondary"} onClick={() => setModal(true)}
                     startIcon={<AddIcon/>}/>
@@ -124,19 +138,19 @@ function Dashboard() {
     
                 {/* MEDIA-LINKS-CONTENTS */}
     
-                <div>
+                <div className='shrink-0 flex'>
                     {
                       loading?
                       (<Skeleton/>)
                       :
-                      (<div className='flex flex-col p-4 items-center md:flex-row flex-wrap gap-10 mt-10'>
+                      (<div className='flex flex-col  p-4 items-center  md:flex-row flex-wrap gap-10 mt-10'>
                         {
-                          content.map((content, index) => (
+                          content.map((content:contentData, index) => (
                             <ContentCard key={index}
                             title={content.title!}
                             addedBy={content.addedBy}
                             link={content.link}
-                            linkType={content.linkType}/>
+                            linkType={content.Linktype}/>
                           ))
                         }
                       </div>)

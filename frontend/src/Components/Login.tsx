@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import {motion, useTime, useTransform} from "motion/react"
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Loader from './loader';
+import Loader from "./Loader"
 import axios from "axios"
 import toast from 'react-hot-toast';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -120,7 +120,7 @@ function Login() {
               <div className='mt-2 text-sm md:text-md text-zinc-400'>Sign in to continue organizing your thoughts</div>
 
               <div className='flex mt-6 flex-col w-[85%]'>
-                <form onSubmit={handleSubmit(Login)} 
+                <form onSubmit={handleSubmit(Login as any)} 
                 className='flex flex-col space-y-8 z-100 text-xl'>
                   <label>
                     <div className='font-["Neue_Haas_Grotesk_Text_Pro"]/40 tracking-wider text-white/80 '>Username :</div>

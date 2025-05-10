@@ -54,16 +54,16 @@ function SideBar() {
     variants={sideBarVariants}
     animate={open? "openSidebar":"closeSidebar"}
     
-    className='p-6 w-80  text-white  overflow-hidden  bg-zinc-950 font-["Neue_Montreal"]'>
+    className=' p-2 md:p-6 w-80  text-white  overflow-hidden  bg-zinc-950 font-["Neue_Montreal"]'>
 
-        <div className='md:text-3xl flex justify-around items-center
+        <div className='text-xs md:text-3xl flex justify-start md:justify-around items-center
          from-zinc-200 to-zinc-600
         bg-clip-text text-transparent bg-gradient-to-b
         font-["Neue_Haas_Grotesk_Text_Pro"] '>
             <div>
               {
-                open?
-                ("AlterSpace")
+                open ?
+                (<div className='hidden sm:flex'>AlterSpace</div>)
                 :
                 (null)
               }
@@ -72,13 +72,13 @@ function SideBar() {
             onClick={() => setOpen((prev) => (!prev))}>
             {
               open?
-              (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className=" text-amber-50 size-8 cursor-pointer">
+              (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className=" text-amber-50 size-6 md:size-8 cursor-pointer">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
               </svg>
               )
               :
               (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="text-amber-50 size-8 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="text-amber-50 size-6 md:size-8 cursor-pointer">
                   <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                 </svg>
 
@@ -99,7 +99,7 @@ function SideBar() {
             (
               <motion.div 
               variants={childVariants}>
-                <div className='text-xl'>Socials</div>
+                <div className=' text-md md:text-xl'>Socials</div>
 
                 <motion.div 
                
@@ -118,9 +118,9 @@ function SideBar() {
                 
   
                 className='mb-8 mt-6'>
-                    <IconTab icon={<X/>} />
-                    <IconTab icon={<Youtube/>} />
-                    <IconTab icon={<Google/>}/>
+                    <IconTab icon={<X w={15} h={15}/>} />
+                    <IconTab icon={<Youtube w={20} h={20}/>} />
+                    <IconTab icon={<Google w={16} h={16}/>}/>
                 </motion.div>
             </motion.div>)
             
