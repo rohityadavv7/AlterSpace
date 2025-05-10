@@ -8,37 +8,50 @@ export const shareSpace = async(req:Request, res:Response):Promise<void> => {
     try{
         const {share} = req.body;
 
+        console.log("id-> ", req.userId)
+
+        console.log("sahre -> ",share)
+
         let hash;
-        let newLink;  
+        let newLink; 
+        let link; 
         
-        console.log("share -> ", share)
+        // console.log("share -> ", share)
 
         if(share){
 
-            const existingLink = await Link.findOne({userId:req.userId})
+            //checking if alredy exists
 
-            if(existingLink){
+            link = await Link.findOne({userId:req.userId})
+
+            
+
+            console.log("existing-> ",link)
+
+            if(link){
                 res.status(200).json({
                     message:"Shareable Link already exists!",
-                    existingLink
+                    link
                 })
                 return;
             }
-
+            console.log("hi")
             hash = randomString(10);
-            newLink = await Link.create({
+            link = await Link.create({
                 shareKey:hash,
-                userId : req.userId
+                userId:req.userId
             })
         }
         else{
             await Link.findOneAndDelete({userId:req.userId})
         }
 
+        console.log("new link generated-> ",newLink)
+
         res.status(200).json({
             success:true,
             message:"Updated Shareable link!",
-            newLink
+            link
         })
 
 
