@@ -68,10 +68,13 @@ export const shareSpaceToOthers = async(req:Request, res:Response):Promise<void>
 
     try{
         
-        const shareKey = req.params.id;
+        const {shareId} = req.params;
+        console.log("req params -> ", req.params)
+
+        console.log("shareKey-> ",shareId)
       
 
-        const linkDetails = await Link.findOne({shareKey}).populate("userId", "username")
+        const linkDetails = await Link.findOne({shareKey:shareId}).populate("userId", "username")
 
         if(!linkDetails){
             res.status(403).json({

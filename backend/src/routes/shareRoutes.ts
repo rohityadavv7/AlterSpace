@@ -4,6 +4,6 @@ import { shareSpace, shareSpaceToOthers } from "../controllers/shareController"
 const router = express.Router()
 
 router.post("/share", userMiddleware, shareSpace);
-router.get("/share/:id",  shareSpaceToOthers);
+router.get("/share/:shareId",  shareSpaceToOthers);
 
 export default router;
