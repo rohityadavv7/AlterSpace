@@ -17,6 +17,7 @@ import ProfileIcon from '../Icons/ProfileIcon'
 import { useNavigate } from 'react-router-dom'
 import { shareAtom } from '../../Recoil/Atoms/ShareAtom'
 import { linkAtom } from '../../Recoil/Atoms/LinkAtom'
+import { filteredContentAtom } from '../../Recoil/Atoms/FilteredContentAtom'
 
 
 
@@ -25,6 +26,7 @@ function Dashboard() {
   const navigate = useNavigate()
 
   const[content, setContent] = useRecoilState(contentAtom)
+  const [filteredContent, setFilteredContent] = useRecoilState(filteredContentAtom)
 
   const[loading, setLoading] = useRecoilState(loadingAtom)
 
@@ -33,7 +35,7 @@ function Dashboard() {
   const [share, setShare] = useRecoilState(shareAtom)
 
   const setToken = useSetRecoilState(tokenAtom)
-  const [link,setLink] = useRecoilState(linkAtom)
+  
 
   interface contentData{
     title:string,
@@ -58,6 +60,8 @@ function Dashboard() {
 
       console.log("RESPONSE IN GETALLCONTENT-> ", response.data)
 
+
+      setFilteredContent(response.data.allContent);
       setContent(response.data.allContent)
 
       // console.log("content-> ", content)
@@ -89,7 +93,7 @@ function Dashboard() {
 
   useEffect(() => {
     getContent()
-  },[setContent, setModal,modal])
+  },[setContent, setModal,modal, setFilteredContent])
 
   return (
     <div className='w-full  relative flex h-full bg-zinc-900'>
@@ -143,15 +147,24 @@ function Dashboard() {
                       loading?
                       (<Skeleton/>)
                       :
-                      (<div className='flex flex-col  p-4 items-center  md:flex-row flex-wrap gap-10 mt-10'>
+                      (<div className='flex flex-col p-4 flex-wrap  md:flex-row  gap-10 mt-10'>
                         {
-                          content.map((content:contentData, index) => (
+                          filteredContent.length === 0?
+                          (content.map((content:contentData, index) => (
                             <ContentCard key={index}
                             title={content.title!}
                             addedBy={content.addedBy}
                             link={content.link}
                             linkType={content.Linktype}/>
-                          ))
+                          )))
+                          :
+                          (filteredContent.map((content:contentData, index) => (
+                            <ContentCard key={index}
+                            title={content.title!}
+                            addedBy={content.addedBy}
+                            link={content.link}
+                            linkType={content.Linktype}/>
+                          )))
                         }
                       </div>)
                     }

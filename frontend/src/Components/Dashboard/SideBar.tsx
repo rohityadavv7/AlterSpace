@@ -5,10 +5,15 @@ import Youtube from '../Icons/Youtube'
 import Google from '../Icons/Google'
 import {AnimatePresence, motion, useAnimate} from "motion/react"
 import IconTab from './IconTab'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { contentAtom } from '../../Recoil/Atoms/ContentAtom'
+import { filteredContentAtom } from '../../Recoil/Atoms/FilteredContentAtom'
 
 
 function SideBar() {
   const[open,setOpen] = useState(false);
+
+  const sideBarArr =["Twitter", "Youtube", "Google"]
 
   const sideBarVariants = {
     openSidebar:{
@@ -32,20 +37,32 @@ function SideBar() {
     }
   }
 
+  interface contentType{
+    link:string,
+    title:string,
+    Linktype:string,
+    addedBy:string
+  }
+
+  const [content, setContent] = useRecoilState(contentAtom);
+
+  const setFilteredContent = useSetRecoilState(filteredContentAtom)
+
   
-  const parentVariants = {
-    openSidebar:{
-      transition:{staggerChildren:0.07, delayChildren:0.2}
-    },
-    closeSidebar:{
-      transition:{
-        staggerChildren:0.05,
-        staggerDirection:-1
-      }
-    }
+  function handleSideBar(text:any){
+
+    console.log("type-> ", text)
+
+    console.log("content in tabs-> ", content)
+    let filteredContent = content;
+
+    filteredContent = filteredContent.filter((c:contentType) => c.Linktype === text)
+
+    setFilteredContent(filteredContent)
+
+    console.log("filtered content-> ", filteredContent)
   }
   
-
  
 
   return (
@@ -105,9 +122,15 @@ function SideBar() {
                
                  
                 className='mb-8 mt-6 items-center flex flex-col'>
-                  <SideBarTabs icon={<X w={20} h={20}/>} text={"Twitter"}/>
-                  <SideBarTabs icon={<Youtube w={23} h={23}/>} text={"Youtube"}/>
-                  <SideBarTabs icon={<Google w={27} h={27}/>} text={"Google"}/>
+                  <SideBarTabs icon={<X w={20} h={20}/>} text={sideBarArr[0]} onClick={() => {
+                         handleSideBar(sideBarArr[0])
+                  }}/>
+                  <SideBarTabs icon={<Youtube w={23} h={23}/>} text={"Youtube"} onClick={() => {
+                         handleSideBar(sideBarArr[1])
+                  }}/>
+                  <SideBarTabs icon={<Google w={27} h={27}/>} text={"Google"} onClick={() => {
+                         handleSideBar(sideBarArr[2])
+                  }}/>
                 </motion.div>
               </motion.div>
             )

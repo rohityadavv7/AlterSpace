@@ -5,6 +5,7 @@ import Signup from "./Components/Signup"
 import Dashboard from "./Components/Dashboard/Dashboard"
 import { Toaster } from "react-hot-toast"
 import {RecoilRoot} from "recoil"
+import Share from "./Components/Share/Share"
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Routes>
 
           <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/share/:shareId" element={<Share/>}/>
           <Route path="/" element={<Login/>}/>
 
           <Route path="/signup" element={<Signup/>}/>

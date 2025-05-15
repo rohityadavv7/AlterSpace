@@ -15,6 +15,10 @@ import toast from 'react-hot-toast'
 import { shareAtom } from '../Recoil/Atoms/ShareAtom'
 import { linkAtom } from '../Recoil/Atoms/LinkAtom'
 import { tokenAtom } from '../Recoil/Atoms/TokenAtom'
+import copy from 'copy-to-clipboard';
+import { Link } from 'react-router-dom'
+import Clipboard from '../Components/Icons/Clipboard'
+import Copied from '../Components/Icons/Copied'
 
 interface propsData{
     share?:boolean
@@ -22,17 +26,20 @@ interface propsData{
 
 function Modal(props:propsData) {
 
-    
 
     const[selectedLink, setSelectedLink] = useState("");
+
+    const [clicked, setClicked] = useState(false);
 
     const setModal = useSetRecoilState(modalAtom)
 
     const setLoading = useSetRecoilState(loadingAtom)
 
-    const token = useRecoilValue(tokenAtom)
+    const token = localStorage.getItem("token")
 
     const[link, setLink] = useRecoilState(linkAtom)
+    localStorage.setItem("link", link)
+    const linkToShare = localStorage.getItem("link")
 
     const[share, setShare] = useRecoilState(shareAtom)
 
@@ -62,7 +69,9 @@ function Modal(props:propsData) {
     
           console.log("RESPONSE FROM SHARE-> ",response.data.link.shareKey);
     
-          setLink(`http://localhost:3000/api/v1/space/share/${response.data.link.shareKey}`)
+          setLink(response.data.link.shareKey)
+          
+
     
           console.log("link-> ", link)
     
@@ -161,7 +170,7 @@ function Modal(props:propsData) {
 
                     
                 <div className='text-amber-50 mt-10'>
-                    { link===""?
+                    { linkToShare === ""?
                         (
                             <div className='mt-10 flex gap-6 items-center justify-center'>
                                 <Button title={"Yes"} variant='primary' onClick={shareContent}/>
@@ -174,14 +183,29 @@ function Modal(props:propsData) {
                         )
                         :
                         (<div className='flex flex-col space-y-2'>
-                            <div>
+                            <div className='text-sm text-white/60'>
                                 Share this link with others:
                             </div>
 
-                            <div>
-                                <a className='text-sky-600 underline cursor-pointer '>
-                                    {link}
-                                </a>
+                            <div className='flex justify-between mt-2  items-center'>
+                                
+                                <Link to={`/share/${link}`}
+                                className='text-sky-600 underline cursor-pointer '>
+                                    
+                                    {`http://localhost:5173/share/${link}`}
+                                </Link>
+
+                                <div className='mr-6'
+                                 onClick={() => {
+                                    setClicked((prev) => !prev)
+                                    copy(`http://localhost:5173/share/${link}`)}}>
+                                    {
+                                        clicked?
+                                        (<Clipboard/>)
+                                        :
+                                        (<Copied/>)
+                                    }
+                                </div>
                             </div>
                         </div>)
                     }

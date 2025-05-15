@@ -51,6 +51,7 @@ function Login() {
       console.log("RESPONSE IN LOGIN-> ",response.data);
 
       localStorage.setItem("token", response.data.token);
+      
       setToken(response.data.token);
 
 
