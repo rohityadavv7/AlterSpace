@@ -46,7 +46,7 @@ function Signup() {
 
         console.log("RESPONSE-> ", response.data)
         setLoading(false);
-        navigate("/");
+        navigate("/login");
 
     }
     catch(error){
@@ -183,7 +183,7 @@ function Signup() {
                 <div className='mt-4 mx-auto'>
                   <div className='text-zinc-400'>
                     already Registered with us? 
-                    <NavLink to="/">
+                    <NavLink to="/login">
                         <span className='ml-2 hover:text-new-violet-400 transition-all duration-300
                         cursor-pointer'>
                         Log in

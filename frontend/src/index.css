@@ -66,4 +66,32 @@
   .animate-blob3{
     animation: animate-blob3 12s ease-in-out infinite;
   }
+
+
+  .hoverText{
+    transition: 0.35s font-weight,
+    0.35s color;
+  }
+
+  .hoverText:hover{
+    font-weight: 900;
+    color: white;
+  }
+
+  /* To the right element */
+  .hoverText:hover + .hoverText{
+    font-weight: 400;
+    color: whitesmoke;
+  }
+
+  /* .hoverText:hover + .hoverText + .hoverText{
+    font-weight: 50;
+    color: whitesmoke;
+  } */
+
+  /* to the left element */
+  .hoverText:has(+ .hoverText:hover){
+    font-weight: 300;
+    color: whitesmoke;
+  }
 }
