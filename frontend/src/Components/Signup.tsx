@@ -6,6 +6,8 @@ import axios from 'axios';
 import Loader from "./Loader";
 import { useRecoilState } from 'recoil';
 import { loadingAtom } from '../Recoil/Atoms/LoadingAtom';
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 
 function Signup() {
@@ -40,7 +42,7 @@ function Signup() {
         const username = data.username;
         const password = data.password;
 
-        const response = await axios.post("http://localhost:3000/api/v1/user/signup",{
+        const response = await axios.post(`${apiUrl}/user/signup`,{
             username,password
         })
 

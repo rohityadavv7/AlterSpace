@@ -19,6 +19,8 @@ import copy from 'copy-to-clipboard';
 import { Link } from 'react-router-dom'
 import Clipboard from '../Components/Icons/Clipboard'
 import Copied from '../Components/Icons/Copied'
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 interface propsData{
     share?:boolean
@@ -57,9 +59,9 @@ function Modal(props:propsData) {
           setModal(true);
           setLoading(true);
 
-          console.log("token in share-> ", token)
+        //   console.log("token in share-> ", token)
           
-          const response = await axios.post("http://localhost:3000/api/v1/space/share",{
+          const response = await axios.post(`${apiUrl}/space/share`,{
             share
           },{
             headers:{
@@ -71,9 +73,8 @@ function Modal(props:propsData) {
     
           setLink(response.data.link.shareKey)
           
-
     
-          console.log("link-> ", link)
+        //   console.log("link-> ", link)
     
           setLoading(false);
           // setShare(false);
@@ -101,7 +102,7 @@ function Modal(props:propsData) {
 
             // console.log("selected-> ", sele)
             
-            const response = await axios.post("http://localhost:3000/api/v1/content/createContent",{
+            const response = await axios.post(`${apiUrl}/content/createContent`,{
                 title,
                 link,
                 linkType
@@ -116,7 +117,7 @@ function Modal(props:propsData) {
             if(response.data.success){
                 toast.success("Content Added!")
             }
-
+            toast.success("content added!")
             setLoading(false);
             setModal(false);
 

@@ -9,6 +9,9 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { loadingAtom } from '../Recoil/Atoms/LoadingAtom';
 import { tokenAtom } from '../Recoil/Atoms/TokenAtom';
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
+console.log(apiUrl)
 
 function Login() {
 
@@ -44,7 +47,7 @@ function Login() {
     try{
       const username = data.username;
       const password = data.password;
-      const response = await axios.post("http://localhost:3000/api/v1/user/login", {
+      const response = await axios.post(`${apiUrl}/user/login`, {
         username,password
       })
 
