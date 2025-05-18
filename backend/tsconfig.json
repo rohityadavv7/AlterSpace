@@ -11,7 +11,7 @@
     "skipLibCheck": true,                          // faster builds, skip checking @types
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["./node_modules/@types", "./src/types"],  // add your custom types here
-    "types": ["node", "express"]                   // explicitly include types
+                   // explicitly include types
   },
   "include": ["src", "environment.d.ts"],
   "exclude": ["node_modules", "dist"]
