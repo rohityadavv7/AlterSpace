@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
-    "rootDir": "src",
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "strict": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "typeRoots": ["./node_modules/@types"],
-    "types": ["node"]
+    "target": "ES2020",                            // modern JS output
+    "module": "CommonJS",                          // Node.js compatible
+    "rootDir": "./src",                            // your source files
+    "outDir": "./dist",                            // where compiled JS goes
+    "strict": true,                                // enable strict mode
+    "esModuleInterop": true,                       // allow default imports from CommonJS
+    "moduleResolution": "node",                    // resolve modules like Node
+    "resolveJsonModule": true,                     // allows importing .json files
+    "skipLibCheck": true,                          // faster builds, skip checking @types
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"],  // add your custom types here
+    "types": ["node", "express"]                   // explicitly include types
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": ["src", "environment.d.ts"],
+  "exclude": ["node_modules", "dist"]
 }
