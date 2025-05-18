@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import {motion, useTime, useTransform} from "motion/react"
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Loader from "./Loader"
 import axios from "axios"
 import toast from 'react-hot-toast';
@@ -51,7 +51,7 @@ function Login() {
       console.log("RESPONSE IN LOGIN-> ",response.data);
 
       localStorage.setItem("token", response.data.token);
-      
+
       setToken(response.data.token);
 
 
@@ -71,8 +71,15 @@ function Login() {
 
   }
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   return (
-    <div className="flex relative w-full h-full overflow-hidden font-['Neue_Haas_Grotesk_Text_Pro'] bg-newBlack">
+    <div className="flex relative w-full h-[100vh] overflow-y-hidden overflow-hidden font-['Neue_Haas_Grotesk_Text_Pro'] bg-newBlack">
         <div className="w-[70%] -left-20  h-[130%] -bottom-50 z-10 blur-3xl  bg-new-violet-400 rotate-90 rounded-full absolute">hi there</div>
         <div className="w-[70%] -left-20  h-[130%] -bottom-90 z-10 blur-3xl  bg-new-violet-600 rotate-90 rounded-full absolute">hi there</div>
         <div className="w-[70%] -left-20  h-[130%] -bottom-120 z-10 blur-3xl  bg-new-violet-800 rotate-90 rounded-full absolute">hi there</div>
@@ -105,7 +112,7 @@ function Login() {
 
               <div className='text-5xl mt-4 
               bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 via-zinc-600 to-zinc-500
-              font-["Neue_Haas_Grotesk_Text_Pro"] z-100 t'>AltSpace</div>
+              font-["Neue_Haas_Grotesk_Text_Pro"] z-100 t'>AlterSpace</div>
 
               <div className='mt-4 p-4 flex items-center space-x-4 '>
                 <div className='rounded-full  p-4 outline-1 '>
@@ -189,6 +196,12 @@ function Login() {
                       </span>
                     </NavLink>
                   </div>
+                </div>
+
+                <div className='text-center text-zinc-400 mt-2'>
+                  <Link to={"/"}>
+                   <span className='text-new-violet cursor-pointer'>Home</span>
+                  </Link>
                 </div>
               </div>
             </div>

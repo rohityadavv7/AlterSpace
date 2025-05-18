@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import {AnimatePresence, motion, useAnimate} from "motion/react"
+import React, { useEffect, useRef, useState } from 'react'
+import {AnimatePresence, motion, useAnimate, useMotionValueEvent, useScroll} from "motion/react"
 import { stagger } from 'motion'
 import Logo from '../../assets/Logo.svg'
 import Close from '../Icons/Close'
@@ -16,7 +16,17 @@ import Testimonials from '../Testimonials'
 
 function Hero() {
 
+    // console.log(scrollY)
+
+   
+
     const [scope, animate] = useAnimate()
+
+    const {scrollYProgress} = useScroll()
+
+    useMotionValueEvent(scrollYProgress,"change" ,(val) => {
+        console.log(val)
+    })
 
     const[menuOpen, setMenuOpen] = useState(false);
 
@@ -39,7 +49,8 @@ function Hero() {
     },[menuOpen])
 
   return (
-    <div className='relative h-screen  w-screen flex flex-col items-center z-10 bg-zinc-950 font-["Six_Caps"] text-white'>
+    <div 
+    className='relative h-[300vh]  w-screen flex flex-col items-center z-10 bg-zinc-950 font-["Six_Caps"] text-white'>
         
         {/* TOP-GRADIENTS */}
         <div className='absolute w-70 h-70 bg-white -translate-x-[50%] -top-60 z-100 blur-3xl
@@ -205,7 +216,7 @@ function Hero() {
                             </div>
                         </Link>
 
-                        <div className='border-r-2 border-l-2 space-y-2 p-3 -1 rounded-xl border-white/50 flex flex-col from-amber-50 to-zinc-600
+                        <div className='border-r-2 border-l-2 space-y-2 p-3 pl-4 border-white/50 flex flex-col from-amber-50 to-zinc-600
                         bg-clip-text text-transparent bg-gradient-to-b'>
                             <div className='flex gap-3 items-center'>
                                 <div>Save</div>
@@ -231,7 +242,7 @@ function Hero() {
                 </motion.div>
 
                 <div className='flex flex-col mt-20 w-full '>
-                    <Testimonials/>
+                    <Testimonials scrollY={scrollY}/>
                 </div>
 
                 <div className='bg-zinc-950  w-full  mt-20'>

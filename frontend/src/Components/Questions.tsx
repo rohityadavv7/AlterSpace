@@ -1,8 +1,18 @@
-import React from 'react'
+import React,{useRef} from 'react'
+import {motion, useMotionValueEvent, useTransform, useScroll} from "motion/react"
 
 function Questions() {
+    const {scrollY} = useScroll();
+
+    useMotionValueEvent(scrollY, "change", (val) => {
+        console.log(val)
+    })
+
+    const scale = useTransform(scrollY, [950, 1350],[0.5, 1])
   return (
-    <div className=' w-screen  md:w-11/12 p-5 md:p-20 flex flex-col md:flex-row mx-auto   items-center'>
+    <motion.div 
+    style={{scale}}
+    className=' w-screen  md:w-11/12 p-5 md:p-20 flex flex-col md:flex-row mx-auto   items-center'>
         <div className='text-8xl md:text-9xl flex items-center w-full md:w-[40%] h-[40vh] md:h-[50vh] '>
             Have<br/> Questions?
         </div>
@@ -82,7 +92,7 @@ function Questions() {
                 </div>
             </div>
         </div>
-    </div> 
+    </motion.div> 
   )
 }
 
