@@ -5,8 +5,6 @@ import Logo from '../../assets/Logo.svg'
 import Close from '../Icons/Close'
 import MenuOpen from '../Icons/MenuOpen'
 import { Link } from 'react-router-dom'
-import Marquee from './Marquee'
-import FeatureCard from './FeatureCard'
 import avatar1 from "../../assets/avatar1.svg"
 import avatar2 from "../../assets/avatar2.svg"
 import share from "../../assets/share.svg"
@@ -16,7 +14,7 @@ import Testimonials from '../Testimonials'
 
 function Hero() {
 
-    // console.log(scrollY)
+   
 
    
 
@@ -242,7 +240,7 @@ function Hero() {
                 </motion.div>
 
                 <div className='flex flex-col mt-20 w-full '>
-                    <Testimonials scrollY={scrollY}/>
+                    <Testimonials />
                 </div>
 
                 <div className='bg-zinc-950  w-full  mt-20'>
