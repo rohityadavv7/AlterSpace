@@ -19,7 +19,7 @@ import { shareAtom } from '../../Recoil/Atoms/ShareAtom'
 import { linkAtom } from '../../Recoil/Atoms/LinkAtom'
 import { filteredContentAtom } from '../../Recoil/Atoms/FilteredContentAtom'
 
-
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function Dashboard() {
 
@@ -51,7 +51,7 @@ function Dashboard() {
 
       const token = localStorage.getItem("token")
       
-      const response = await axios.get("http://localhost:3000/api/v1/content/getAllContent",{
+      const response = await axios.get(`${apiUrl}/content/getAllContent`,{
         headers:{
           'X-Requested-With': 'XMLHttpRequest',
           Authorization:`Bearer ${token}`

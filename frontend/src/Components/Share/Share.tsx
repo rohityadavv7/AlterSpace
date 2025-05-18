@@ -10,6 +10,8 @@ import Skeleton from '../Skeleton'
 import ContentCard from '../ContentCard'
 import { useParams } from 'react-router-dom'
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function Share() {
 
     interface contentData{
@@ -21,7 +23,7 @@ function Share() {
 
     const {shareId} = useParams();
     console.log("shareId-> ", shareId)
-    const link = `http://localhost:3000/api/v1/space/share/${shareId}`
+    const link = `${apiUrl}/space/share/${shareId}`
 
     console.log(link)
     const[sharedContent, setSharedContent] = useRecoilState(sharedContentAtom)
