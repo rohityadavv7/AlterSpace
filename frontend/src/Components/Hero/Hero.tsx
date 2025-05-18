@@ -23,7 +23,7 @@ function Hero() {
     const {scrollYProgress} = useScroll()
 
     useMotionValueEvent(scrollYProgress,"change" ,(val) => {
-        console.log(val)
+        
     })
 
     const[menuOpen, setMenuOpen] = useState(false);
