@@ -1,4 +1,4 @@
-import express from "express"
+import express,{Response,Request} from "express"
 const app = express();
 import {DB_URL, PORT} from "./config"
 import cors from "cors"
@@ -17,7 +17,7 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/content",contentRoutes )
 app.use("/api/v1/space",shareRoutes )
 
-app.get("/", (req,res) => {
+app.get("/", (req:Request,res:Response) => {
     res.send("hi there")
 })
 
