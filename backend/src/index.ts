@@ -11,7 +11,9 @@ import mongoose from "mongoose";
 
 
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+    origin:"*"
+}));
 
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/content",contentRoutes )
