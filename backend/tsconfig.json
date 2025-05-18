@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES2020",                            // modern JS output
-    "module": "CommonJS",                          // Node.js compatible
-    "rootDir": "./src",                            // your source files
-    "outDir": "./dist",                            // where compiled JS goes
-    "strict": true,                                // enable strict mode
-    "esModuleInterop": true,                       // allow default imports from CommonJS
-    "moduleResolution": "node",                    // resolve modules like Node
-    "resolveJsonModule": true,                     // allows importing .json files
-    "skipLibCheck": true,                          // faster builds, skip checking @types
-    "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["./node_modules/@types", "./src/types"],  // add your custom types here
-                   // explicitly include types
+    "target": "ES2020",                     // Modern JS target
+    "module": "CommonJS",                   // Node.js module system
+    "rootDir": "./src",                     // Your source files root
+    "outDir": "./dist",                     // Compiled output folder
+    "strict": true,                         // Enable all strict type-checking options
+    "esModuleInterop": true,                // For import compatibility
+    "skipLibCheck": true,                   // Skip type checks on all declaration files (improves speed)
+    "forceConsistentCasingInFileNames": true, 
+    "moduleResolution": "node",             // Resolves modules the Node.js way
+    "resolveJsonModule": true,              // Allows importing JSON files
+    "types": ["node", "express"],           // Include Node and Express types globally
+    "noImplicitAny": true
   },
-  "include": ["src", "environment.d.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src", "environment.d.ts"],   // Include source files and your custom typings
+  "exclude": ["node_modules", "dist"]       // Exclude node_modules and compiled files
 }
