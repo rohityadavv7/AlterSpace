@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import SideBar from './SideBar'
 import TopGradient from './TopGradient'
 import Button from '../Button'
@@ -6,7 +6,7 @@ import ShareIcon from "../Icons/ShareIcon"
 import AddIcon from '../Icons/AddIcon'
 import Skeleton from '../Skeleton'
 import axios from 'axios'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { contentAtom } from '../../Recoil/Atoms/ContentAtom'
 import { loadingAtom } from '../../Recoil/Atoms/LoadingAtom'
 import ContentCard from '../ContentCard'
@@ -16,7 +16,6 @@ import { tokenAtom } from '../../Recoil/Atoms/TokenAtom'
 import ProfileIcon from '../Icons/ProfileIcon'
 import { useNavigate } from 'react-router-dom'
 import { shareAtom } from '../../Recoil/Atoms/ShareAtom'
-import { linkAtom } from '../../Recoil/Atoms/LinkAtom'
 import { filteredContentAtom } from '../../Recoil/Atoms/FilteredContentAtom'
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -142,7 +141,7 @@ function Dashboard() {
     
                 {/* MEDIA-LINKS-CONTENTS */}
     
-                <div className='shrink-0 flex'>
+                {/* <div className='shrink-0 flex'>
                     {
                       loading?
                       (<Skeleton/>)
@@ -168,7 +167,7 @@ function Dashboard() {
                         }
                       </div>)
                     }
-                </div>
+                </div> */}
             </div>
         </div>)
         :
