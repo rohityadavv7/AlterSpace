@@ -71,7 +71,7 @@ function Share() {
                     <Skeleton/>
                 </div>)
                 :
-                (<div className='flex flex-col md:flex-wrap  md:flex-row p-6 mt-10 gap-6'>
+                (<div className='flex flex-col md:flex-wrap items-center  md:flex-row p-6 mt-10 gap-6'>
                     {
                         (sharedContent ?? []).map((content:contentData,index) => (
                             <div>
