@@ -150,7 +150,7 @@ function Dashboard() {
                         {
                           
                           filteredContent.length === 0?
-                          (content.map((content:contentData, index) => (
+                          ((content ?? []).map((content:contentData, index) => (
                             <ContentCard key={index}
                             title={content.title!}
                             addedBy={content.addedBy}
@@ -158,7 +158,7 @@ function Dashboard() {
                             linkType={content.Linktype}/>
                           )))
                           :
-                          (filteredContent.map((content:contentData, index) => (
+                          ((filteredContent ?? []).map((content:contentData, index) => (
                             <ContentCard key={index}
                             title={content.title!}
                             addedBy={content.addedBy}

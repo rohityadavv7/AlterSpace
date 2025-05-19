@@ -43,14 +43,14 @@ function ContentType(props:contentProps) {
                 </div>
                 )}
 
-                {/* {tweetId && (
+                {tweetId && (
                 <div style={{ display: postLoaded ? 'visible' : 'hidden' }}>
                     <TwitterTweetEmbed
                     tweetId={tweetId}
                     onLoad={() => setPostLoaded(true)}
                     />
                 </div>
-                )} */}
+                )}
 
             </div>)
             :
