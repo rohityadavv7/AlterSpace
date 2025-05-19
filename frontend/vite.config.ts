@@ -9,6 +9,7 @@ export default defineConfig({
     'require': undefined, // avoids "require is not defined"
   },
   build: {
+    minify: false, // ✅ Disable minification for debugging
     rollupOptions: {
       external: ['fs', 'path', 'crypto'], // or whatever Node package is the problem
     }
