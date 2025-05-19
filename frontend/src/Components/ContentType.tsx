@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-// import { TwitterTweetEmbed } from 'react-twitter-embed'
+import { TwitterTweetEmbed } from 'react-twitter-embed'
 
 
 
@@ -45,12 +45,10 @@ function ContentType(props:contentProps) {
 
                 {tweetId && (
                 <div style={{ display: postLoaded ? 'visible' : 'hidden' }}>
-                    {/* <TwitterTweetEmbed
+                    <TwitterTweetEmbed
                     tweetId={tweetId}
                     onLoad={() => setPostLoaded(true)}
-                    /> */}
-
-                    hii
+                    />
                 </div>
                 )}
 

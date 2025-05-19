@@ -10,9 +10,6 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
-  define: {
-    'require': undefined,
-  },
   build: {
     minify: false,
     rollupOptions: {
@@ -21,8 +18,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      react: 'react',
-      'react-dom': 'react-dom',
-    },
-  },
+      fs: 'false',
+      path: 'false',
+      crypto: 'false',
+    }
+  },  
+  define: {
+    global: 'window', // if a lib expects Node's `global`
+  }
 })
