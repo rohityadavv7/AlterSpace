@@ -137,14 +137,14 @@ function Login() {
                     <div className='font-["Neue_Haas_Grotesk_Text_Pro"]/40 tracking-wider text-white/80 '>Username :</div>
                     <input type='text'
                     className='w-full py-2 mt-2 px-6 outline-1 f outline-amber-50/40 rounded-xl'
-                    placeholder='username...' {...register("username")}/>
+                    placeholder='Dummy-> Srank' {...register("username")}/>
                   </label>
 
                   <label>
                   <div className='font-["Neue_Haas_Grotesk_Text_Pro"]/40 tracking-wider text-white/80'>Password :</div>
                     <input type={showPass?"text":"password"}
                     className='w-full py-2 mt-2 px-6 outline-1 outline-amber-50/40  rounded-xl'
-                    placeholder='password...' {...register("password")}/>
+                    placeholder='Dummy-> 123' {...register("password")}/>
                     {
                       showPass?
                       (<svg onClick={() => setShowPass((prev)=> !prev)}
