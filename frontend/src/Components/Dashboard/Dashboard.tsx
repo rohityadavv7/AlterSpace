@@ -144,7 +144,12 @@ function Dashboard() {
                 <div className='shrink-0 flex'>
                     {
                       loading?
-                      (<Skeleton/>)
+                      (<div className='flex flex-col md:flex-row p-4 flex-wrap mt-10 gap-10'>
+                        <Skeleton/>
+                        <Skeleton/>
+                        <Skeleton/>
+                        <Skeleton/>
+                      </div>)
                       :
                       (<div className='flex flex-col p-4 flex-wrap  md:flex-row  gap-10 mt-10'>
                         {
