@@ -191,15 +191,15 @@ function Modal(props:propsData) {
                             <div className='flex justify-between mt-2  items-center'>
                                 
                                 <Link to={`/share/${link}`}
-                                className='text-sky-600 underline cursor-pointer '>
+                                className='text-sky-600 underline  text-sm cursor-pointer '>
                                     
-                                    {`http://localhost:5173/share/${link}`}
+                                    {`https://projectsalterspacedev.vercel.app/share/${link}`}
                                 </Link>
 
                                 <div className='mr-6'
                                  onClick={() => {
                                     setClicked((prev) => !prev)
-                                    copy(`http://localhost:5173/share/${link}`)}}>
+                                    copy(`https://projectsalterspacedev.vercel.app/share/${link}`)}}>
                                     {
                                         clicked?
                                         (<Clipboard/>)
