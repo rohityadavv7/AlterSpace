@@ -148,13 +148,13 @@ function Dashboard() {
                       :
                       (<div className='flex flex-col p-4 flex-wrap  md:flex-row  gap-10 mt-10'>
                         {
-                          content.map((content:contentData, index) => (
-                            <ContentCard key={index}
-                              title={content.title!}
-                              addedBy={content.addedBy}
-                              link={content.link}
-                              linkType={content.Linktype}/>
-                          ))
+                          // content.map((content:contentData, index) => (
+                          //   <ContentCard key={index}
+                          //     title={content.title!}
+                          //     addedBy={content.addedBy}
+                          //     link={content.link}
+                          //     linkType={content.Linktype}/>
+                          // ))
                           // filteredContent.length === 0?
                           // (content.map((content:contentData, index) => (
                           //   <ContentCard key={index}
