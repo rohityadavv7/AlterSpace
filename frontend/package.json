@@ -24,6 +24,7 @@
     "react-hot-toast": "^2.5.2",
     "react-lite-youtube-embed": "^2.5.1",
     "react-router-dom": "^7.5.3",
+    "react-tweet": "^3.2.2",
     "react-twitter-embed": "^4.0.4",
     "recoil": "^0.7.7",
     "serve": "^14.2.4",

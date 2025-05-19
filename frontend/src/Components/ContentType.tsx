@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { TwitterTweetEmbed } from 'react-twitter-embed'
+import {Tweet} from 'react-tweet'
 
 
 
@@ -30,6 +31,16 @@ function ContentType(props:contentProps) {
     const youtubeId = getYouTubeVideoId(props.link)
 
     const tweetId = getTweetId(props.link);
+
+    useEffect(() => {
+        if (props.linkType === 'Twitter') {
+          setPostLoaded(false); // Reset loading state on new tweet
+          const timer = setTimeout(() => {
+            setPostLoaded(true);
+          }, 1500); // Adjust delay as needed
+          return () => clearTimeout(timer);
+        }
+      }, [props.linkType, tweetId]);
     // console.log(tweetId)
   return (
     <div>
@@ -45,10 +56,11 @@ function ContentType(props:contentProps) {
 
                 {tweetId && (
                 <div style={{ display: postLoaded ? 'visible' : 'hidden' }}>
-                    <TwitterTweetEmbed
-                    tweetId={tweetId}
-                    onLoad={() => setPostLoaded(true)}
-                    />
+                    {
+                        postLoaded && <Tweet
+                        id={tweetId}
+                        />
+                    }
                 </div>
                 )}
 
