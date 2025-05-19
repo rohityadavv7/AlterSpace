@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
+    "lib": ["DOM", "ESNext"],
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "strict": true,
@@ -9,7 +10,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "types": ["vite/client", "react", "react-dom"]
   },
   "include": ["src"]
 }

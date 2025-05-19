@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import  {  useState } from 'react'
 import SideBarTabs from './SideBarTabs'
 import X from '../Icons/X'
 import Youtube from '../Icons/Youtube'
 import Google from '../Icons/Google'
-import {AnimatePresence, motion, useAnimate} from "motion/react"
+import {AnimatePresence, motion} from "motion/react"
 import IconTab from './IconTab'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { contentAtom } from '../../Recoil/Atoms/ContentAtom'

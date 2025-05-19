@@ -3,7 +3,7 @@ import {motion} from "motion/react"
 
 interface dataType{
     icon:ReactElement,
-    text:String,
+    text:string,
     onClick?:()=> void
 }
 

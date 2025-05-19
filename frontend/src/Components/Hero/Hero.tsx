@@ -225,7 +225,7 @@ function Hero() {
                             <div className='text-xl'>save whatever you like.</div>
                         </div>
 
-                        <div className='text- p-3 space-y-2 flex flex-col from-amber-50 to-zinc-600
+                        <div className=' p-3 space-y-2 flex flex-col from-amber-50 to-zinc-600
                         bg-clip-text text-transparent bg-gradient-to-b'>
                             <div className='flex gap-3 items-center'>
                                 <div>Share</div>

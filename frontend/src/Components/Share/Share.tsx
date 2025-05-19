@@ -47,6 +47,7 @@ function Share() {
         }catch(error){
             console.log("ERROR IN GETTING SHARED SPACE CONTENT...", error);
             toast.error("Failed to get content!")
+            setLoading(false);
         }
     }
 
@@ -67,7 +68,7 @@ function Share() {
                 :
                 (<div className='flex flex-col  md:flex-row p-6 mt-10 gap-6'>
                     {
-                        sharedContent.map((content:contentData,index) => (
+                        (sharedContent ?? []).map((content:contentData,index) => (
                             <div>
                                 <ContentCard key={index}
                                 title={content?.title}

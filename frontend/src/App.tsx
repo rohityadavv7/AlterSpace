@@ -4,7 +4,7 @@ import "./index.css"
 import Signup from "./Components/Signup"
 import Dashboard from "./Components/Dashboard/Dashboard"
 import { Toaster } from "react-hot-toast"
-import {RecoilRoot} from "recoil"
+
 import Share from "./Components/Share/Share"
 import Hero from "./Components/Hero/Hero"
 
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="h-[300vh] bg-zinc-950 overflow-x-hidden w-screen">
-      <RecoilRoot>
+
       <BrowserRouter>
       
       <Toaster/>
@@ -29,7 +29,7 @@ function App() {
         </Routes>
       
       </BrowserRouter>
-      </RecoilRoot>
+      
     </div>
   )
 }

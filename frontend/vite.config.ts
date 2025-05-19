@@ -2,16 +2,27 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+      jsxImportSource: 'react',
+    }),
+    tailwindcss(),
+  ],
   define: {
-    'require': undefined, // avoids "require is not defined"
+    'require': undefined,
   },
   build: {
-    minify: false, // ✅ Disable minification for debugging
+    minify: false,
     rollupOptions: {
-      external: ['fs', 'path', 'crypto'], // or whatever Node package is the problem
-    }
-  }
+      external: ['fs', 'path', 'crypto'],
+    },
+  },
+  resolve: {
+    alias: {
+      react: 'react',
+      'react-dom': 'react-dom',
+    },
+  },
 })
