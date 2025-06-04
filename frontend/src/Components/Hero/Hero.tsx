@@ -161,7 +161,7 @@ function Hero() {
             <div className='w-screen mx-auto flex flex-col items-center'>
                 <motion.div 
                     ref={scope}
-                    className='text-[10rem] md:text-[15rem] lg:text-[18rem]  h-[28rem] relative z-1000  mt-10 flex items-center from-amber-50  to-zinc-800
+                    className='text-[6rem] sm:text-[13rem] md:text-[15rem] lg:text-[18rem]  h-[28rem] relative z-1000  mt-10 flex items-center from-amber-50  to-zinc-800
                     bg-clip-text text-transparent bg-gradient-to-b'>
                         {"ALTERSPACE".split("").map((word,index) => (
                             <motion.span 
